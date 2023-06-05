@@ -1,5 +1,6 @@
 package com.learning.demo.dao;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Repository;
@@ -16,5 +17,11 @@ public interface PersonDao {
     }
 
     public List<Person> getAllPeople();
+
+    public int deletePersonById(UUID id);
+
+    public int updatePersonById(UUID id, Person newPerson);
+
+    public Optional<Person> getPersonById(UUID id);
 }
 

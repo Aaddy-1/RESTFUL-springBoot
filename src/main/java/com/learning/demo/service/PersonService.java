@@ -1,6 +1,8 @@
 package com.learning.demo.service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,5 +32,9 @@ public class PersonService {
 
     public List<Person> returnAllPeople() {
         return this.personDao.getAllPeople();
+    }
+
+    public Optional<Person> getPersonById(UUID id) {
+        return this.personDao.getPersonById(id);
     }
 }
