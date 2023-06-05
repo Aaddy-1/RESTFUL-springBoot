@@ -1,5 +1,7 @@
 package com.learning.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -24,5 +26,9 @@ public class PersonService {
     public int addPerson(Person newPerson) {
         this.personDao.insertPersonDefault(newPerson);
         return 0;
+    }
+
+    public List<Person> returnAllPeople() {
+        return this.personDao.getAllPeople();
     }
 }

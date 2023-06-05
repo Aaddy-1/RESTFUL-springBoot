@@ -1,6 +1,9 @@
 package com.learning.demo.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +17,7 @@ import com.learning.demo.model.Person;
 @RestController
 @RequestMapping("api/v1/user")
 public class PersonController {
+    // Our person service that we are going to use
     private final PersonService service;
 
     // Spring will automatically inject the PersonService dependency using this constructor
@@ -22,8 +26,16 @@ public class PersonController {
     PersonController(PersonService service) {
         this.service = service;
     }
+    
+    // This will handle post requests
     @PostMapping
     public void addPerson(@RequestBody Person person) { // We add RequestBody annotation to take the request body and convert it into a person
         service.addPerson(person);
+    }
+
+    // This will handle get requests
+    @GetMapping
+    public List<Person> getAllPeople() {
+        return service.returnAllPeople();
     }
 }

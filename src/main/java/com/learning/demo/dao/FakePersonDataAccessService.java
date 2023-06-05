@@ -21,4 +21,12 @@ public class FakePersonDataAccessService implements PersonDao {
         return 1;
     }
 
+    @Override
+    public List<Person> getAllPeople() {
+        return DB;
+        // throw new UnsupportedOperationException("Unimplemented method 'getAllPeople'");
+    }
+
+    
+
 }
