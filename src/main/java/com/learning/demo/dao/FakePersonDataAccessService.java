@@ -30,19 +30,31 @@ public class FakePersonDataAccessService implements PersonDao {
 
     @Override
     public int deletePersonById(UUID id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deletePersonById'");
+        // We use optional in case the person to be deleted is not in the db
+        Optional<Person> personToBeDeleted = getPersonById(id);
+        // return 0 if they dont exist
+        if (personToBeDeleted.isEmpty()) {
+            return 0;
+        }
+        // we use the .get() method to get the actual person object
+        DB.remove(personToBeDeleted.get());
+        return 1;
     }
 
     @Override
     public int updatePersonById(UUID id, Person newPerson) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updatePersonById'");
+        Optional<Person> personToBeUpdated = getPersonById(id);
+        if (personToBeUpdated.isEmpty()) {
+            return 0;
+        }
+        // Get the index of the element we are trying to update
+        int index = DB.indexOf(personToBeUpdated.get());
+        DB.set(index, newPerson); 
+        return 1;
     }
 
     @Override
     public Optional<Person> getPersonById(UUID id) {
-
         return DB.stream().filter(person -> person.getId().equals(id)).findFirst();
     }
 
