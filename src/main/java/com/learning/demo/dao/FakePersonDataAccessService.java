@@ -49,6 +49,12 @@ public class FakePersonDataAccessService implements PersonDao {
         }
         // Get the index of the element we are trying to update
         int index = DB.indexOf(personToBeUpdated.get());
+
+        if (newPerson.getId() == null) {
+            DB.set(index, new Person(id, newPerson.getName()));
+            return 1;
+        }
+        
         DB.set(index, newPerson); 
         return 1;
     }
