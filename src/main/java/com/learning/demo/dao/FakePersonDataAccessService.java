@@ -42,16 +42,16 @@ public class FakePersonDataAccessService implements PersonDao {
     }
 
     @Override
-    public int updatePersonById(UUID id, Person newPerson) {
-        Optional<Person> personToBeUpdated = getPersonById(id);
+    public int updatePersonById(UUID uid, Person newPerson) {
+        Optional<Person> personToBeUpdated = getPersonById(uid);
         if (personToBeUpdated.isEmpty()) {
             return 0;
         }
         // Get the index of the element we are trying to update
         int index = DB.indexOf(personToBeUpdated.get());
 
-        if (newPerson.getId() == null) {
-            DB.set(index, new Person(id, newPerson.getName()));
+        if (newPerson.getUid() == null) {
+            DB.set(index, new Person(uid, newPerson.getName()));
             return 1;
         }
         
@@ -60,8 +60,8 @@ public class FakePersonDataAccessService implements PersonDao {
     }
 
     @Override
-    public Optional<Person> getPersonById(UUID id) {
-        return DB.stream().filter(person -> person.getId().equals(id)).findFirst();
+    public Optional<Person> getPersonById(UUID uid) {
+        return DB.stream().filter(person -> person.getUid().equals(uid)).findFirst();
     }
 
     

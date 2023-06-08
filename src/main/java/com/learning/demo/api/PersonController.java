@@ -45,18 +45,18 @@ public class PersonController {
 
     // When we want to add url params to the get request
     @GetMapping(path = "{id}")
-    public Person getPersonById(@PathVariable("id") UUID id) {
-        return service.getPersonById(id).orElse(null);
+    public Person getPersonById(@PathVariable("id") UUID uid) {
+        return service.getPersonById(uid).orElse(null);
     }
 
     @DeleteMapping(path = "{id}")
-    public int deletePersonById(@PathVariable("id") UUID id) {
-        return service.deletePersonById(id);
+    public int deletePersonById(@PathVariable("id") UUID uid) {
+        return service.deletePersonById(uid);
     }
 
     @PutMapping(path = "{id}")
-    public int updatePersonById(@PathVariable("id") UUID id, @RequestBody Person newPerson) {
-        return service.updatePersonById(id, newPerson);
+    public int updatePersonById(@PathVariable("id") UUID uid, @RequestBody Person newPerson) {
+        return service.updatePersonById(uid, newPerson);
     }
 
 
